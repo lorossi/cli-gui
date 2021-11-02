@@ -1,3 +1,14 @@
+/**
+ * @file terminal.h
+ * @author Lorenzo Rossi - https://github.com/lorossi/cli-gui
+ * @date 02/11/2021
+ * @version 0.0.1
+ * @brief Sort of a simple library to handle windows in terminal.
+ * I made this to exercise a little bit with C and because I couldn't understand how to use ncurses.
+ * Also, this works on any platform.
+ * It's still a WIP, many things are still missing.
+*/
+
 #ifndef _TERMINAL
 #define _TERMINAL
 
@@ -8,7 +19,6 @@
 #include <stdarg.h>    // for multiple parameters
 #include <string.h>    // for strcpy()
 #include <stdlib.h>    // for malloc() and free()
-#include "assert.h"
 
 typedef int style;
 
@@ -80,7 +90,8 @@ static const int DIALOG_MAX_HEIGHT = 10;
  */
 typedef struct
 {
-  int width, height;
+  int width;  /**< width of the rectangle */
+  int height; /**<  height of the rectangle */
 } Rectangle;
 
 /**
@@ -90,7 +101,8 @@ typedef struct
  */
 typedef struct
 {
-  int x, y;
+  int x; /**< x coordinate */
+  int y; /**< y coordinate */
 } Position;
 
 /**
@@ -100,9 +112,9 @@ typedef struct
  */
 typedef struct
 {
-  int R; // range [0-255]
-  int G; // range [0-255]
-  int B; // range [0-255]
+  int R; /**< R channel, range [0-255] */
+  int G; /**< G channel, range [0-255] */
+  int B; /**< B channel, range [0-255] */
 } RGB;
 
 /**
@@ -113,9 +125,9 @@ typedef struct
  */
 typedef struct
 {
-  int H; // range [0-359]
-  int S; // range [0-99]
-  int L; // range [0-99]
+  int H; /**< Hue, range [0-359] */
+  int S; /**< Saturation, range [0-99] */
+  int L; /**< Lightness, range [0-99] */
 } HSL;
 
 /**
@@ -124,17 +136,20 @@ typedef struct
  */
 typedef struct
 {
-  int auto_width, auto_height;            // auto resizing
-  int padding;                            // text padding in window
-  int alignment;                          // text alignment in window
-  int line_wrap;                          // sets line wrapping
-  int visible;                            // sets window visibility
-  style fg_color, bg_color, text_style;   // styling for the window
-  int lines;                              // number of lines currently in the buffer
-  char text_buffer[MAX_LINES][MAX_WIDTH]; // buffer for text
-  char text[MAX_LINES][MAX_WIDTH];        // text as displayed on the window
-  Rectangle size;                         // size of the window
-  Position position;                      // position of the top left corner
+  int auto_width;                         /**<  auto width resizing  */
+  int auto_height;                        /**<  auto height resizing  */
+  int padding;                            /**<  text padding in window */
+  int alignment;                          /**<  text alignment in window */
+  int line_wrap;                          /**<  sets line wrapping */
+  int visible;                            /**<  sets window visibility */
+  style fg_color;                         /**<  color for the window text */
+  style bg_color;                         /**<  color for the window background */
+  style text_style;                       /**<  style for the window text */
+  int lines;                              /**<  number of lines currently in the buffer */
+  char text_buffer[MAX_LINES][MAX_WIDTH]; /**<  buffer for text */
+  char text[MAX_LINES][MAX_WIDTH];        /**<  text as displayed on the window */
+  Rectangle size;                         /**<  size of the window */
+  Position position;                      /**<  position of the top left corner */
 } Window;
 
 /**
@@ -143,9 +158,9 @@ typedef struct
  */
 typedef struct
 {
-  Window *window;     // main window
-  Window *buttons[2]; // buttons, stored as window
-  int active_button;  // index of the currently selected button
+  Window *window;     /**<  main window  */
+  Window *buttons[2]; /**<  buttons, stored as window */
+  int active_button;  /**<  index of the currently selected button */
 } Dialog;
 
 // struct creation
@@ -212,7 +227,7 @@ void windowSetTextStyle(Window *w, style textstyle);
 int windowGetLines(Window *w);
 int windowAddLine(Window *w, char *line);
 int windowChangeLine(Window *w, char *line, int line_count);
-int windowDeleteLine(Window *w, int line_count);
+int windowDeleteLine(Window *w, int line_index);
 int windowDeleteAllLines(Window *w);
 void windowShow(Window *w);
 void windowClear(Window *w);

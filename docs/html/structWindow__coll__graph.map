@@ -1,0 +1,5 @@
+<map id="Window" name="Window">
+<area shape="rect" id="node1" title="Struct containing a window." alt="" coords="57,95,132,121"/>
+<area shape="rect" id="node2" href="$structPosition.html" title="Struct containing x and y coordinates. Mostly used in internal functions." alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node3" href="$structRectangle.html" title="Struct containing width and height. Mostly used in internal functions." alt="" coords="105,5,191,32"/>
+</map>

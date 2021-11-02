@@ -1,3 +1,5 @@
+/** @file terminal.c */
+
 #include "terminal.h"
 
 // Definition of private functions, so that linter and compiler are happy
@@ -1231,7 +1233,7 @@ Rectangle windowGetSize(Window *w)
 }
 
 /**
- * @brief Sets position of a window, relative to top left corner
+ * @brief Sets position of a window, relative to top left corner.
  * 
  * @param w pointer to window
  * @param x x coordinate
@@ -1243,15 +1245,23 @@ void windowSetPosition(Window *w, int x, int y)
   return;
 }
 
-// TODO continue from here
-
-/* Gets the position of a window. */
+/**
+ * @brief Gets the position of a window.
+ * 
+ * @param w pointer to window
+ * @return Position position of top left corner
+ */
 Position windowGetPosition(Window *w)
 {
   return w->position;
 }
 
-/* Gets the position of the bottom right corner of the window */
+/**
+ * @brief  Gets the position of the bottom right corner of the window.
+ * 
+ * @param w pointer to window
+ * @return Position position of the bottom right corner
+ */
 Position windowGetBottomRight(Window *w)
 {
   return (Position){
@@ -1260,7 +1270,12 @@ Position windowGetBottomRight(Window *w)
   };
 }
 
-/* Sets windows padding. */
+/**
+ * @brief Sets window padding.
+ * 
+ * @param w pointer to window
+ * @param padding left and right padding between text and border
+ */
 void windowSetPadding(Window *w, int padding)
 {
   if (padding > 0)
@@ -1269,7 +1284,12 @@ void windowSetPadding(Window *w, int padding)
   return;
 }
 
-/* Sets window alignment. Values: -1 for left, 0 for center, 1 for right. */
+/**
+ * @brief Sets window text alignment.
+ * 
+ * @param w pointer to window
+ * @param alignment  -1 for left, 0 for center, 1 for right
+ */
 void windowSetAlignment(Window *w, int alignment)
 {
   if (-1 <= alignment && alignment <= 1)
@@ -1277,7 +1297,13 @@ void windowSetAlignment(Window *w, int alignment)
 
   return;
 }
-/* Sets window auto size. Values: 1 for automatic sizing, 0 for manual sizing. */
+
+/**
+ * @brief Sets window auto size.
+ * 
+ * @param w pointer to window
+ * @param auto_size 1 for automatic sizing, 0 for manual sizing
+ */
 void windowSetAutoSize(Window *w, int auto_size)
 {
   if (auto_size != 0 && auto_size != 1)
@@ -1287,7 +1313,12 @@ void windowSetAutoSize(Window *w, int auto_size)
   w->auto_width = auto_size;
 }
 
-/* Sets window auto width. Values: 1 for automatic width, 0 for manual sizing. */
+/**
+ * @brief Sets window auto width. 
+ * 
+ * @param w pointer to window
+ * @param auto_size 1 for automatic width, 0 for manual sizing.
+ */
 void windowSetAutoWidth(Window *w, int auto_size)
 {
   if (auto_size != 0 && auto_size != 1)
@@ -1296,7 +1327,12 @@ void windowSetAutoWidth(Window *w, int auto_size)
   w->auto_width = auto_size;
 }
 
-/* Sets window auto height. Values: 1 for automatic height, 0 for manual sizing. */
+/**
+ * @brief Sets window auto height.
+ * 
+ * @param w pointer to window
+ * @param auto_size 1 for automatic height, 0 for manual sizing.
+ */
 void windowSetAutoHeight(Window *w, int auto_size)
 {
   if (auto_size != 0 && auto_size != 1)
@@ -1305,7 +1341,12 @@ void windowSetAutoHeight(Window *w, int auto_size)
   w->auto_height = auto_size;
 }
 
-/* Sets window line wrap. Values: 1 for automatic wrapping, 0 for no wrapping. */
+/**
+ * @brief Sets window line wrap.
+ * 
+ * @param w pointer to window
+ * @param line_wrap 1 for automatic wrapping, 0 for no wrapping
+ */
 void windowSetLineWrap(Window *w, int line_wrap)
 {
   if (line_wrap != 0 && line_wrap != 1)
@@ -1314,7 +1355,11 @@ void windowSetLineWrap(Window *w, int line_wrap)
   w->line_wrap = line_wrap;
 }
 
-/* Manually trigger window resize. */
+/**
+ * @brief Manually triggers window resize.
+ * 
+ * @param w pointer to window
+ */
 void windowAutoResize(Window *w)
 {
   if (w->auto_width)
@@ -1330,34 +1375,60 @@ void windowAutoResize(Window *w)
   }
 }
 
-/* Sets window text color. */
+/**
+ * @brief Sets window text color.
+ * 
+ * @param w pointer to window
+ * @param fg_color text style color
+ */
 void windowSetFGcolor(Window *w, style fg_color)
 {
   w->fg_color = fg_color;
   return;
 }
 
-/* Sets window background color. */
+/**
+ * @brief Sets window background color.
+ * 
+ * @param w pointer to window
+ * @param bg_color text background style color
+ */
 void windowSetBGcolor(Window *w, style bg_color)
 {
   w->bg_color = bg_color;
   return;
 }
 
-/* Sets window text style */
+/**
+ * @brief Sets window text style.
+ * 
+ * @param w pointer to window
+ * @param textstyle text style
+ */
 void windowSetTextStyle(Window *w, style textstyle)
 {
   w->text_style = textstyle;
   return;
 }
 
-/* Returns the number of line of text of a window. */
+/**
+ * @brief Returns the number of line of text of a window.
+ * 
+ * @param w pointer to window
+ * @return int number of linesin the window
+ */
 int windowGetLines(Window *w)
 {
   return w->lines;
 }
 
-/* Adds a line of text to the window. Returns -1 in case of error, otherwise returns the size of the line. */
+/**
+ * @brief Adds a line of text to the window.
+ * 
+ * @param w pointer to window
+ * @param line line to add
+ * @return int -1 in case of error, otherwise length of the line
+ */
 int windowAddLine(Window *w, char *line)
 {
   if (w->lines > MAX_LINES)
@@ -1369,7 +1440,14 @@ int windowAddLine(Window *w, char *line)
   return sizeof(w->text_buffer[w->lines - 1]);
 }
 
-/* Changes a line of text in the window. Returns -1 in case of error, otherwise returns the size of the line. */
+/**
+ * @brief  Changes a line of text in the window.
+ * 
+ * @param w pointer to window
+ * @param line new content of the line
+ * @param line_count index of the line to modify
+ * @return int -1 in case of error, otherwise length of the line
+ */
 int windowChangeLine(Window *w, char *line, int line_count)
 {
   if (line_count > w->lines)
@@ -1380,28 +1458,43 @@ int windowChangeLine(Window *w, char *line, int line_count)
   return sizeof(w->text_buffer[line_count]);
 }
 
-/* Deletes a line of text in the window. Returns -1 in case of error, otherwise returns the number of lines. */
-int windowDeleteLine(Window *w, int line_count)
+/**
+ * @brief Deletes a line of text in the window.
+ * 
+ * @param w pointer to window
+ * @param line_index index of the line to remove
+ * @return int -1 in case of error, otherwise the new number of lines
+ */
+int windowDeleteLine(Window *w, int line_index)
 {
-  if (line_count >= w->lines)
+  if (line_index >= w->lines)
     return -1;
 
   w->lines--;
 
-  for (int i = line_count; i < w->lines; i++)
+  for (int i = line_index; i < w->lines; i++)
     _stringCopy(w->text_buffer[i], w->text_buffer[i + 1]);
 
   return w->lines;
 }
 
-/* Deletes a all the lines of text in the window. Returns -1 in case of error. */
+/**
+ * @brief Deletes a all the lines of text in the window.
+ * 
+ * @param w pointer to window
+ * @return int -1 in case of error, 0 otherwise
+ */
 int windowDeleteAllLines(Window *w)
 {
   w->lines = 0;
   return 0;
 }
 
-/* Shows a window on the terminal. */
+/**
+ * @brief Shows a window on the terminal.
+ * 
+ * @param w pointer to window
+ */
 void windowShow(Window *w)
 {
   // hidden, return
@@ -1438,7 +1531,6 @@ void windowShow(Window *w)
 
   // draw outer border
   _windowDrawBorder(w);
-  fflush(NULL);
 
   // set text style
   // prevent complete reset
@@ -1464,7 +1556,11 @@ void windowShow(Window *w)
   move_cursor_to(0, 0);
 }
 
-/* Clears a window from the terminal */
+/**
+ * @brief Clears a window from terminal.
+ * 
+ * @param w pointer to window
+ */
 void windowClear(Window *w)
 {
   reset_bg();
@@ -1472,7 +1568,13 @@ void windowClear(Window *w)
     erase_at(w->position.x, y + w->position.y, w->size.width);
 }
 
-/* Creates a dialog window. */
+/**
+ * @brief Create a dialog window.
+ * 
+ * @param x x position of the dialog
+ * @param y y position of the image
+ * @return Dialog* 
+ */
 Dialog *createDialog(int x, int y)
 {
   int width, height;
@@ -1512,7 +1614,11 @@ Dialog *createDialog(int x, int y)
   return d;
 }
 
-/* Deletes a dialog window. */
+/**
+ * @brief Deletes a dialog window.
+ * 
+ * @param d pointer to dialog
+ */
 void deleteDialog(Dialog *d)
 {
   // free window
@@ -1523,7 +1629,11 @@ void deleteDialog(Dialog *d)
   free(d);
 }
 
-/* Show a dialog */
+/**
+ * @brief Shows a dialog window
+ * 
+ * @param d pointer to dialog window
+ */
 void dialogShow(Dialog *d)
 {
   windowShow(d->window);
@@ -1535,7 +1645,11 @@ void dialogShow(Dialog *d)
   }
 }
 
-/* Hides a dialog */
+/**
+ * @brief Hides a dialog window
+ * 
+ * @param d pointer to dialog
+ */
 void dialogClear(Dialog *d)
 {
   windowClear(d->window);
@@ -1544,7 +1658,13 @@ void dialogClear(Dialog *d)
     windowClear(d->buttons[i]);
 }
 
-/* Set buttons for the dialog. */
+/**
+ * @brief Set buttons for the dialog
+ * 
+ * @param d pointer to dialog window
+ * @param yes string of the first button
+ * @param no string of the second button
+ */
 void dialogSetButtons(Dialog *d, char *yes, char *no)
 {
   char buffer[MAX_WIDTH];
@@ -1559,7 +1679,12 @@ void dialogSetButtons(Dialog *d, char *yes, char *no)
   windowAddLine(d->buttons[0], buffer);
 }
 
-/* Sets dialog padding. */
+/**
+ * @brief Sets dialog padding
+ * 
+ * @param d pointer to dialog window
+ * @param padding 
+ */
 void dialogSetPadding(Dialog *d, int padding)
 {
   if (padding > 0)
@@ -1568,7 +1693,13 @@ void dialogSetPadding(Dialog *d, int padding)
   return;
 }
 
-/* Sets dialog text. */
+/**
+ * @brief Sets text for the dialog
+ * 
+ * @param d pointer to dialog window
+ * @param text text to be put on the dialog
+ * @param v_padding vertical padding
+ */
 void dialogSetText(Dialog *d, char *text, int v_padding)
 {
   windowDeleteAllLines(d->window);
@@ -1581,6 +1712,12 @@ void dialogSetText(Dialog *d, char *text, int v_padding)
 }
 
 /* Polls a response for for the dialog. Needs raw mode. */
+/**
+ * @brief Polls a response for the dialog. Needs to be in dialog mode
+ * 
+ * @param d pointer to dialog
+ * @return int returns the id of the pressed button
+ */
 int dialogWaitResponse(Dialog *d)
 {
   while (1)
