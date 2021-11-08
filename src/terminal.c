@@ -1122,14 +1122,15 @@ int await_keypress(char *s)
     printf("%s", s);
 
   int read_bytes;
-  char *buffer[1];
+  char buffer[1];
 
   do
   {
     read_bytes = read(0, buffer, 1);
   } while (read_bytes == 0);
 
-  return atoi(buffer[0]);
+  int pressed_key;
+  return (int)buffer[0];
 }
 
 /**
@@ -1564,7 +1565,7 @@ void windowShow(Window *w)
 void windowClear(Window *w)
 {
   reset_bg();
-  for (int y = 0; y < w->size.height; y++)
+  for (int y = -1; y < w->size.height + 1; y++)
     erase_at(w->position.x, y + w->position.y, w->size.width);
 }
 

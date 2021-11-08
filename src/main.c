@@ -472,7 +472,6 @@ void starry_night()
     printf("*");
   }
 
-  move_cursor_to_bottom();
   reset_styles();
 }
 
@@ -512,32 +511,32 @@ int main()
   hide_cursor();
   clear_terminal();
 
-  // test_windows();
-  // await_keypress("\nPress a button to continue");
+  test_windows();
+  await_keypress("\nPress a button to continue");
 
-  // test_colors();
-  // await_keypress("\nPress a button to continue");
+  test_colors();
+  await_keypress("\nPress a button to continue");
 
-  // test_textmodes();
-  // await_keypress("\nPress a button to continue");
+  test_textmodes();
+  await_keypress("\nPress a button to continue");
 
-  // test_mixed();
-  // await_keypress("\nPress a button to continue");
+  test_mixed();
+  await_keypress("\nPress a button to continue");
 
-  // test_RGB();
-  // await_keypress("\nPress a button to continue");
+  test_RGB();
+  await_keypress("\nPress a button to continue");
 
   test_HSL();
   await_keypress("\nPress a button to continue");
 
-  // test_hue();
-  // await_keypress("\nPress a button to continue");
+  test_hue();
+  await_keypress("\nPress a button to continue");
 
-  // starry_night();
-  // await_keypress("\nPress a button to continue");
+  starry_night();
+  await_keypress("\nPress a button to continue");
 
-  // dialog();
-  // await_keypress("\nPress a button to continue");
+  dialog();
+  await_keypress("\nPress a button to continue");
 
   show_cursor();
   exit_raw_mode();
