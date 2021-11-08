@@ -207,7 +207,7 @@ int _stringFindFirstSpace(char *s, int start)
 
   for (int i = start; i >= 0; i--)
   {
-    if (s[i] == ' ')
+    if (s[i] == ' ' || s[i] == '\0')
       return i;
   }
 
@@ -436,7 +436,7 @@ int _windowLinesWrap(Window *w)
         {
           // if there isn't any space, take the whole line
           // make sure it's in bound of the buffer
-          end = _min(width, len) + current_pos;
+          end = len;
         }
         else
         {
@@ -1603,9 +1603,9 @@ Dialog *createDialog(int x, int y)
   windowSetPadding(b2, 0);
   // set text
   windowDeleteAllLines(b1);
-  windowAddLine(b1, "YES");
+  windowAddLine(b1, "  NO  ");
   windowDeleteAllLines(b2);
-  windowAddLine(b2, "NO");
+  windowAddLine(b2, "  YES  ");
 
   // allocate space for dialog
   Dialog *d = malloc(sizeof(Window));
