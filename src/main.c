@@ -475,7 +475,7 @@ void starry_night()
   reset_styles();
 }
 
-void dialog()
+void test_dialog()
 {
   clear_terminal();
 
@@ -483,6 +483,7 @@ void dialog()
   dialogSetPadding(d, 4);
   dialogSetText(d, "Previous session found. Continue?", 1);
   dialogSetButtons(d, "AYE", "NAY");
+  dialogCenter(d);
   dialogShow(d);
   dialogWaitResponse(d);
   dialogClear(d);
@@ -511,31 +512,31 @@ int main()
   hide_cursor();
   clear_terminal();
 
-  test_windows();
-  await_keypress("\nPress a button to continue");
+  // test_windows();
+  // await_keypress("\nPress a button to continue");
 
-  test_colors();
-  await_keypress("\nPress a button to continue");
+  // test_colors();
+  // await_keypress("\nPress a button to continue");
 
-  test_textmodes();
-  await_keypress("\nPress a button to continue");
+  // test_textmodes();
+  // await_keypress("\nPress a button to continue");
 
-  test_mixed();
-  await_keypress("\nPress a button to continue");
+  // test_mixed();
+  // await_keypress("\nPress a button to continue");
 
-  test_RGB();
-  await_keypress("\nPress a button to continue");
+  // test_RGB();
+  // await_keypress("\nPress a button to continue");
 
-  test_HSL();
-  await_keypress("\nPress a button to continue");
+  // test_HSL();
+  // await_keypress("\nPress a button to continue");
 
-  test_hue();
-  await_keypress("\nPress a button to continue");
+  // test_hue();
+  // await_keypress("\nPress a button to continue");
 
-  starry_night();
-  await_keypress("\nPress a button to continue");
+  // starry_night();
+  // await_keypress("\nPress a button to continue");
 
-  dialog();
+  test_dialog();
 
   show_cursor();
   exit_raw_mode();

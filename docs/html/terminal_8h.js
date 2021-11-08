@@ -27,6 +27,7 @@ var terminal_8h =
     [ "createWindow", "terminal_8h.html#ad5d027ed74c3e41efe68e7073f6ff292", null ],
     [ "deleteDialog", "terminal_8h.html#a1e703eb9521e56854a9575617346da80", null ],
     [ "deleteWindow", "terminal_8h.html#a54d1b1859fc470476f2ff32c7ac2e8a3", null ],
+    [ "dialogCenter", "terminal_8h.html#ad04bf2503628ba33f3f4c9d9ba1c96db", null ],
     [ "dialogClear", "terminal_8h.html#a90b8b7ffa54ab13acc9ed12afb16c3ce", null ],
     [ "dialogSetButtons", "terminal_8h.html#ad48312ba3e131b5fc940dec753b9da96", null ],
     [ "dialogSetPadding", "terminal_8h.html#a4c684ca57c5b4dc9d43f4c7be3f8eac3", null ],

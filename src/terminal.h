@@ -235,6 +235,7 @@ void windowClear(Window *w);
 // dialog manipulation
 Dialog *createDialog(int x, int y);
 void deleteDialog(Dialog *d);
+void dialogCenter(Dialog *d);
 void dialogShow(Dialog *d);
 void dialogClear(Dialog *d);
 void dialogSetButtons(Dialog *d, char *yes, char *no);
