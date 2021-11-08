@@ -413,7 +413,7 @@ int _windowCalculateSpacing(Window *w, int current_len)
  */
 int _windowLinesWrap(Window *w)
 {
-  int current = 0;
+  int lines_num = 0;
   const int width = w->size.width - 2 * w->padding - 2;
   // go over each line
   for (int i = 0; i < w->lines; i++)
@@ -432,7 +432,7 @@ int _windowLinesWrap(Window *w)
         // try to look for the first break point, the closest space
         int end = _stringFindFirstSpace(w->text_buffer[i], current_pos + width);
 
-        if (end == -1)
+        if (end == -1 || end < current_pos)
         {
           // if there isn't any space, take the whole line
           // make sure it's in bound of the buffer
@@ -445,10 +445,10 @@ int _windowLinesWrap(Window *w)
         }
 
         // copy to display lines
-        _stringCopyNBytes(w->text[current], w->text_buffer[i], current_pos, end);
+        _stringCopyNBytes(w->text[lines_num], w->text_buffer[i], current_pos, end);
 
         // continue to following lines
-        current++;
+        lines_num++;
         // keep going to the char after the space
         current_pos += end - current_pos + 2;
       }
@@ -456,24 +456,24 @@ int _windowLinesWrap(Window *w)
     else
     {
       // simply copy into display line
-      _stringCopy(w->text[current], w->text_buffer[i]);
-      current++;
+      _stringCopy(w->text[lines_num], w->text_buffer[i]);
+      lines_num++;
     }
   }
 
   // check if the window has to be resized or some lines have to be hidden
-  if (current > w->size.height - 2 && w->auto_height)
-    w->size.height = current + 2;
-  else if (current > w->size.height - 2)
-    current = w->size.height - 2;
+  if (lines_num > w->size.height - 2 && w->auto_height)
+    w->size.height = lines_num + 2;
+  else if (lines_num > w->size.height - 2)
+    lines_num = w->size.height - 2;
 
-  w->lines = current;
+  w->lines = lines_num;
 
   // copy back into display lines to prevent double wrapping
   for (int i = 0; i < w->lines; i++)
     _stringCopy(w->text_buffer[i], w->text[i]);
 
-  return current;
+  return lines_num;
 }
 
 /**
@@ -1129,6 +1129,8 @@ int await_keypress(char *s)
     read_bytes = read(0, buffer, 1);
   } while (read_bytes == 0);
 
+  fflush(NULL);
+
   return (int)buffer[0];
 }
 
@@ -1578,11 +1580,9 @@ void windowClear(Window *w)
 Dialog *createDialog(int x, int y)
 {
   int width, height;
-  // get terminal size
-  Rectangle r = get_terminal_size();
-  // calculate size
-  width = _min(DIALOG_MAX_WIDTH, r.width);
-  height = _min(DIALOG_MAX_HEIGHT, r.height);
+  // calculate size TODO IMPROVE
+  width = DIALOG_MAX_WIDTH;
+  height = DIALOG_MAX_HEIGHT;
   // calculate border
   // create a window
   Window *w = createWindow(x, y);
@@ -1601,6 +1601,11 @@ Dialog *createDialog(int x, int y)
   // set padding
   windowSetPadding(b1, 0);
   windowSetPadding(b2, 0);
+  // set text
+  windowDeleteAllLines(b1);
+  windowAddLine(b1, "YES");
+  windowDeleteAllLines(b2);
+  windowAddLine(b2, "NO");
 
   // allocate space for dialog
   Dialog *d = malloc(sizeof(Window));
@@ -1672,18 +1677,19 @@ void dialogSetButtons(Dialog *d, char *yes, char *no)
   windowDeleteAllLines(d->buttons[0]);
   windowDeleteAllLines(d->buttons[1]);
 
-  _stringPad(buffer, yes, 2);
-  windowAddLine(d->buttons[1], buffer);
-
-  _stringPad(buffer, no, 2);
+  _stringCopy(buffer, yes);
+  _stringPad(buffer, buffer, 2);
   windowAddLine(d->buttons[0], buffer);
+  _stringCopy(buffer, no);
+  _stringPad(buffer, buffer, 2);
+  windowAddLine(d->buttons[1], buffer);
 }
 
 /**
- * @brief Sets dialog padding
+ * @brief Sets dialog horizontal padding
  * 
  * @param d pointer to dialog window
- * @param padding 
+ * @param padding horizontal padding
  */
 void dialogSetPadding(Dialog *d, int padding)
 {

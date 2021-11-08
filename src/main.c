@@ -482,7 +482,7 @@ void dialog()
   Dialog *d = createDialog(8, 4);
   dialogSetPadding(d, 4);
   dialogSetText(d, "Previous session found. Continue?", 1);
-  dialogSetButtons(d, "  AYE  ", "  NAY  ");
+  dialogSetButtons(d, "AYE", "NAY");
   dialogShow(d);
   dialogWaitResponse(d);
   dialogClear(d);
@@ -536,7 +536,6 @@ int main()
   await_keypress("\nPress a button to continue");
 
   dialog();
-  await_keypress("\nPress a button to continue");
 
   show_cursor();
   exit_raw_mode();
