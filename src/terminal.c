@@ -1129,7 +1129,6 @@ int await_keypress(char *s)
     read_bytes = read(0, buffer, 1);
   } while (read_bytes == 0);
 
-  int pressed_key;
   return (int)buffer[0];
 }
 
