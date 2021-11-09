@@ -86,5 +86,6 @@ var terminal_8h =
     [ "windowSetVisibility", "terminal_8h.html#a6d6653531e9943b15c9df8e7141582c1", null ],
     [ "windowSetWidth", "terminal_8h.html#a8dd7f7a25b5f1ca631c58842387559ae", null ],
     [ "windowShow", "terminal_8h.html#afd292e1b36eb8ae2dd40f07ae53dd52f", null ],
+    [ "windowToggleVisibility", "terminal_8h.html#a6bf6b23eb18ae6579ee349003a893d92", null ],
     [ "write_at", "terminal_8h.html#af6d7ad5ada9ea48b329c07e115aa90a8", null ]
 ];
