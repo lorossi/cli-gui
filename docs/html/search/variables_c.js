@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['x_206',['x',['../structPosition.html#a6150e0515f7202e2fb518f7206ed97dc',1,'Position']]]
+  ['width_212',['width',['../structRectangle.html#a2474a5474cbff19523a51eb1de01cda4',1,'Rectangle']]],
+  ['window_213',['window',['../structDialog.html#affdaa53d51accec8f5fb38ca193e3de4',1,'Dialog']]]
 ];

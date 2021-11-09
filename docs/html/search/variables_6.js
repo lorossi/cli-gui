@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['padding_195',['padding',['../structWindow.html#a78dca952886227190969e885fbdd4fb4',1,'Window']]],
-  ['position_196',['position',['../structWindow.html#a4d84949a19a29d3bb4dd2635c8241a83',1,'Window']]]
+  ['l_200',['L',['../structHSL.html#a61b43f3326e96036caf1c76875b794cc',1,'HSL']]],
+  ['line_5fwrap_201',['line_wrap',['../structWindow.html#a1f26491b9d25c2fcfead21683d3f5028',1,'Window']]],
+  ['lines_202',['lines',['../structWindow.html#a9921ae02cadccc99dd6c3a9b68be050a',1,'Window']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['r_197',['R',['../structRGB.html#a3d90133d3051fbc4816d02efd9566d8e',1,'RGB']]]
+  ['padding_203',['padding',['../structWindow.html#a78dca952886227190969e885fbdd4fb4',1,'Window']]],
+  ['position_204',['position',['../structWindow.html#a4d84949a19a29d3bb4dd2635c8241a83',1,'Window']]]
 ];
