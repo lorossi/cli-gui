@@ -70,6 +70,7 @@ var terminal_8h =
     [ "windowGetLines", "terminal_8h.html#a866ee94a66213608c9eee388058b9038", null ],
     [ "windowGetPosition", "terminal_8h.html#a304be73c7f1ce8869ff605622b93b05f", null ],
     [ "windowGetSize", "terminal_8h.html#a7bd0be47b4f8d143d81489fa273ccf7d", null ],
+    [ "windowGetVisibility", "terminal_8h.html#a9f422d12ba402c7b0c8ccca5c8af8658", null ],
     [ "windowMoveBy", "terminal_8h.html#a1b473b0341f7f6e1cfdc17d61d1824a9", null ],
     [ "windowSetAlignment", "terminal_8h.html#a9339efe7fd59349c78b009057fb0ba8d", null ],
     [ "windowSetAutoHeight", "terminal_8h.html#a1c45b8e23ce0a198a3fcdf3f8792014f", null ],
